@@ -32,13 +32,22 @@
 
 	</form>
 
-	<div>
+	<div class="selected_container">
+		<ul>
+			{{#each orders}}
+				{{> order}}
+			{{/each}}
+		</ul> 
 		<!-- TODO: display selected items from orders collection -->
 		<!-- TODO: change item quantity -->
 	</div>
 </body>
 	
 <template name = "order">
+	<li>
+		{{title}}
+		<button class="delete">x</button>
+	</li>
 </template>
 
 
