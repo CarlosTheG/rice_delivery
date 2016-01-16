@@ -1,7 +1,4 @@
-// somehow import Orders from server and save as Orders to post when done
-
-// hoot_menu = new Mongo.Collection('hoot_menu'); //hopefully imported in
-
+// somehow import Orders from server and save as Orders
 var curr_Order = [];
 var order_sum = Session.set("sum", 1.50);
 var hoot_menu = [
@@ -10,68 +7,71 @@ var hoot_menu = [
 	{name:"expensive stuff", price: 6, checked:false}
 ];
 
-// var delivery_options = [
-// 	{name: "Normal Delivery", price: 1.50, checked: true},
-// 	(name: "Faster Delivery", price: 3, checked: false)
-// ];
+Template.order_form.helpers({
+	curr_orders: function() {
+		return curr_Order;
+	},
 
-if (Meteor.isClient) {
-	Template.body.helpers({
-		curr_orders: function() {
-			return curr_Order;
-		},
+	hoot_menu: function() {
+		return hoot_menu;
+	},
 
-		hoot_menu: function() {
-			return hoot_menu;
-		},
+	sum: function(){
+		return Session.get("sum");
+	},
 
-		sum: function(){
-			return Session.get("sum");
-		}
-	});
+    "submit .order-form": function (event) {
+		// Prevent default browser form submit
+      	event.preventDefault();
+	 
+      	// Get value from form element
+    	  var text = event.target.text.value;
+	 
+	  	// Insert a task into the collection
+	  	Orders.insert({
+			text: text,
+	        createdAt: new Date() // current time
+		});
+	 
+		// Clear form
+		event.target.text.value = "";
+    }
+})
 
-	// Template.body.events({
-	// 	'click '
-	// })
-
-	Template.order.events({
-		'click .delete' : function(){
+Template.order.events({
+	'click .delete' : function(){
 			curr_Order.remove(this);
 		}
-	});
+});
 
-	Template.menu_items.events({
-		'click .toggle_check': function() {
-			var returned_array = checkedHelper(this.name, hoot_menu);
+Template.menu_items.events({
+	'click .toggle_check': function() {
+		var returned_array = checkedHelper(this.name, hoot_menu);
 
-			var price = returned_array[1];
-			if (returned_array[0] == true) { 
-				Session.set("sum", Session.get("sum") + price);
-			} else { 
-				Session.set("sum", Session.get("sum") - price); 
-			}
+		var price = returned_array[1];
+		if (returned_array[0] == true) { 
+			Session.set("sum", Session.get("sum") + price);
+		} else { 
+			Session.set("sum", Session.get("sum") - price); 
 		}
-	});
+	}
+});
 
-	// TODO: Create slider
-	// Template.delivery.events({
-	// 	'click .toggle_check': function() {
-	// 		var returned_array = checkedHelper(this.name, delivery_options);
+// TODO: Create slider
+// Template.delivery.events({
+// 	'click .toggle_check': function() {
+// 		var returned_array = checkedHelper(this.name, delivery_options);
 
-	// 		var price = returned_array[1]
-	// 		if (returned_array[0] == true) {
-	// 			Session.set("dsum", price);
-	// 		} else {
-				
-	// 		}
-	// 	}
-	// })
-};
+// 		var price = returned_array[1]
+// 		if (returned_array[0] == true) {
+// 			Session.set("dsum", price);
+// 		} else {
+			
+// 		}
+// 	}
+// })
 
-
-
-
-function checkedHelper(element_name, obj_array){
+function checkedHelper(element_name, obj_array) {
 	for (var i in obj_array) {
 		if (obj_array[i].name == element_name) {
 			obj_array[i].checked = !obj_array[i].checked;
