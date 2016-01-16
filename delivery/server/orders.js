@@ -1,4 +1,4 @@
-git Orders = new Mongo.Collection('Orders');
+Orders = new Mongo.Collection('Orders');
 
 if (Meteor.isClient) {
 	Template.body.helpers({
