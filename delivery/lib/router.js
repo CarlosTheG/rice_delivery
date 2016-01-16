@@ -22,7 +22,7 @@ Router.route('/', {
 
 Router.route('/order', {
 	name: 'order',
-	template: 'order'
+	template: 'order_form'
 });
 
 Router.route('/accept', {
