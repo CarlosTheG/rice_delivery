@@ -1,1 +1,14 @@
 /* CSS declarations go here */
+#login-buttons-venmo {
+	height: 500px;
+	width: 500px;
+	
+
+}
+.login-button {
+	background-img: url('http://brand.venmo.com/img/logo-mark.png') !important;
+	background-size: cover !important;
+}
+/*.login-buttons-with-only-one-button {
+	
+}*/
