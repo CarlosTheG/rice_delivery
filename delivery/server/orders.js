@@ -19,7 +19,7 @@ if (Meteor.isClient) {
     		throw new Meteor.Error("login-failed", 
       		"Authentication with Venmo failed");
   		}
-});
+	});
 	Meteor.logout(function(err){
   		if (err) {
     		throw new Meteor.Error("logout-failed",
@@ -31,15 +31,14 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 	Meteor.startup(function () {
-
-		ServiceConfiguration.configurations.upsert({
-		  service: "venmo"
-		  }, {
-		    $set {
-		      clientId: "3428",
-		      scope: "make_payments + access_email + access_balance",
-		      secret: "efFYfmDRbygAsmNHmffXMhaCAFt8GG5N"
-		    }
-		});	
+		ServiceConfiguration.configurations.upsert(
+			{ service: "venmo" }, 
+			{
+    		  $set: {
+      			clientId: "3428",
+      			scope: "make_payments+access_email+access_balance",
+      			secret: "efFYfmDRbygAsmNHmffXMhaCAFt8GG5N"
+    		}
+		});
 	})
 }
