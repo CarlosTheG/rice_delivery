@@ -14,6 +14,8 @@ if (Meteor.isClient) {
 			})
 		}
 	});
+
+	//venmo
 	Meteor.loginWithVenmo(function (err) {
   		if (err) {
     		throw new Meteor.Error("login-failed", 

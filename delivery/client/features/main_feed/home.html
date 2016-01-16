@@ -1,6 +1,39 @@
 <template name="home">
-	
-	<!-- Feed and HomePage info goes here -->
-	<p> Home Feed Here. </p>
+	<!-- check user login -->
+	{{#if currentUser}}
+		<!-- show this after successful logins -->
+		<!-- Feed and HomePage info goes here -->
+		<p> Home Feed Here. </p>
+		{{> home_feed}}
 
+		<!-- Hoot / Chaus -->
+		<!-- Filters -->
+		<!-- Feed of Orders -->
+		<!-- Order button -->
+		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
+
+	{{else}}
+		{{> home_venmo_login}}
+	{{/if}}
+</template>
+
+<template name="home_venmo_login">
+	<!-- show this if no venmo detected -->
+	<p>you don't have venmo!</p>
+	<div id="venmoLogin">
+	  	{{> loginButtons}}
+  	</div>
+</template>
+
+<template name="home_feed">
+	<!-- feed of orders -->
+	<div class="orders">
+		{{#each Orders}}
+			{{> order}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="order">
+	<!-- specific order details -->
 </template>
