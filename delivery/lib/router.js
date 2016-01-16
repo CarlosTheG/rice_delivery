@@ -21,6 +21,7 @@ Router.route('/', {
 });
 
 Router.route('/order', {
+	name: 'order',
 	template: 'order'
 });
 
