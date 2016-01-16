@@ -6,26 +6,43 @@
 	<form class="order-form">
 
 		<div id="hoot-order">
-			<select>
-				<option>Select menu item(s)</option>
-			</select>
+			Select menu item(s)
 		</div>
 		<div id="hoot-checkboxes">
-			<label for="chicken_banh_mi"><input type="checkbox" id="chicken_banh_mi"/>Chicken Banh Mi -- $3.00</label>
-			<label for="HBCB"><input type="checkbox" id="HBCB"/>HBCB -- $2.00</label>
+			{{#each hoot_menu}}
+				{{> menu_items}}
+			{{/each}}
 		</div>
 
 		<div id="chaus-order" class="form">
-			<!-- TODO: change select to allow multiple selections -->
+			<!-- TODO: change select to allow multiple selections
 			<select name="chaus-menu-item">
-				<option value="chai_tea_latte">Chai Tea Latte -- $2.50</option>
-				<option value="drip_coffee">Drip Coffee -- $1.00</option>
+				{{#each hoot_menu}}
+					{{> drop_down}}
+				{{/each}}
+				<option value="chai_tea_latte">Chai Tea Latte  $2.50</option>
+				<option value="drip_coffee">Drip Coffee  $1.00</option>
 			</select>
-			<br>
+			<br> -->
 		</div>
 
-		<!-- TODO: slider range from 1.25 - max -->
-		<input type="text" name="fee" placeholder="1.25">
+		<!-- TODO: slider range from 1.25 - max 
+		<div id="delivery payment">
+			Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
+			{{#each delivery_options}}
+				{{> delivery}}
+			{{/each}}
+		</div> -->
+
+		<div id="sum">
+			Your total (w/ delivery) is: ${{sum}}
+		</div>
+		<!--
+		<ul>
+			{{#each curr_orders}}
+				{{> order}}
+			{{/each}}
+		</ul> -->
 
 		<!-- submits order to orders collection -->
 		<input type="submit" value="Confirm Order">
@@ -33,21 +50,26 @@
 	</form>
 
 	<div class="selected_container">
-		<ul>
-			{{#each orders}}
-				{{> order}}
-			{{/each}}
-		</ul> 
-		<!-- TODO: display selected items from orders collection -->
 		<!-- TODO: change item quantity -->
 	</div>
 </body>
 	
+<template name = "menu_items">
+	<input type="checkbox" checked="{{checked}}" class="toggle_check">
+	<span class="text">{{name}} -- ${{price}}</span>
+</template>	
+
 <template name = "order">
 	<li>
-		{{title}}
+		{{name}}
 		<button class="delete">x</button>
 	</li>
 </template>
+
+<template name="delivery">
+	<input type="checkbox" checked="{{checked}}" class="toggle_check">
+	<span class="text">{{name}} - ${{price}}</span>
+</template>
+
 
 
