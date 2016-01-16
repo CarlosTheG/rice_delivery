@@ -18,12 +18,9 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
-<<<<<<< HEAD
 accounts-ui-unstyled
 accounts-ui
 pcooney10:accounts-venmo
 service-configuration
 http
-=======
 iron:router
->>>>>>> cc6c81c035aaa08d3ca9fe1a033566c41e2f318f
