@@ -1,4 +1,4 @@
-<body>
+<template name = "order">
 	<h1>Hoot</h1>
 	<h1>Coffeehouse</h1>
 
@@ -37,12 +37,7 @@
 		<div id="sum">
 			Your total (w/ delivery) is: ${{sum}}
 		</div>
-		<!--
-		<ul>
-			{{#each curr_orders}}
-				{{> order}}
-			{{/each}}
-		</ul> -->
+
 
 		<!-- submits order to orders collection -->
 		<input type="submit" value="Confirm Order">
@@ -52,19 +47,11 @@
 	<div class="selected_container">
 		<!-- TODO: change item quantity -->
 	</div>
-</body>
-	
 <template name = "menu_items">
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}} -- ${{price}}</span>
 </template>	
 
-<template name = "order">
-	<li>
-		{{name}}
-		<button class="delete">x</button>
-	</li>
-</template>
 
 <template name="delivery">
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
