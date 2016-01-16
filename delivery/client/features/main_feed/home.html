@@ -27,13 +27,17 @@
 
 <template name="home_feed">
 	<!-- feed of orders -->
-	<div class="orders">
-		{{#each Orders}}
-			{{> order}}
+	<ul>
+		{{#each order}}
+			{{> individual_order}}
 		{{/each}}
-	</div>
+	</ul>
 </template>
 
-<template name="order">
-	<!-- specific order details -->
+<template name="individual_order">
+	<li>
+		Price: ${{price}}
+		Location: {{location}}
+		Created: {{createdAt}}
+	</li>
 </template>
