@@ -24,3 +24,4 @@ pcooney10:accounts-venmo
 service-configuration
 http
 iron:router
+accounts-password
