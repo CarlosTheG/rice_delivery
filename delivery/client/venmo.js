@@ -8,7 +8,7 @@
 // }
 
 
-Template.venmo.venmoInfo = function(){
+Template.venmo1.venmoInfo = function(){
 	var userAccessToken = "d02568d40844cc0d814c55e954472de239690aaffb6ca72212567c6424143fd1"
 	Meteor.call('checkAccountInfo',userAccessToken,function(error,results){
 		console.log(results.content);

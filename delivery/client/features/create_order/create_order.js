@@ -23,6 +23,8 @@ Template.order_form.helpers({
     "submit .order-form": function (event) {
 		// Prevent default browser form submit
       	event.preventDefault();
+
+      	alert("hello!");
 	 
       	// Get value from form element
     	  var text = event.target.text.value;
@@ -35,14 +37,10 @@ Template.order_form.helpers({
 	 
 		// Clear form
 		event.target.text.value = "";
+
+		Router.go("/home");
     }
 })
-
-Template.order.events({
-	'click .delete' : function(){
-			curr_Order.remove(this);
-		}
-});
 
 Template.menu_items.events({
 	'click .toggle_check': function() {
