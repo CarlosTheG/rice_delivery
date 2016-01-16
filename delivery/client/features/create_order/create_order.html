@@ -3,33 +3,35 @@
 	<h1>Coffeehouse</h1>
 
 
+<!-- 	<div id="location">
+		Enter dropoff location:
+		<input type="text" name="text" placeholder="ex: Duncan College" />
+	</div> -->
+
+	<div id="hoot-order">
+		Select menu item(s)
+	</div>
+	<div id="hoot-checkboxes">
+		{{#each hoot_menu}}
+			{{> menu_items}}
+		{{/each}}
+	</div>
+
+	<!-- TODO: slider range from 1.25 - max 
+	<div id="delivery payment">
+		Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
+		{{#each delivery_options}}
+			{{> delivery}}
+		{{/each}}
+	</div> -->
+
+	<div id="sum">
+		Your total (w/ delivery) is: ${{sum}}
+	</div>
+
 	<form class="order-form">
-
-		<div id="hoot-order">
-			Select menu item(s)
-		</div>
-		<div id="hoot-checkboxes">
-			{{#each hoot_menu}}
-				{{> menu_items}}
-			{{/each}}
-		</div>
-
-		<!-- TODO: slider range from 1.25 - max 
-		<div id="delivery payment">
-			Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
-			{{#each delivery_options}}
-				{{> delivery}}
-			{{/each}}
-		</div> -->
-
-		<div id="sum">
-			Your total (w/ delivery) is: ${{sum}}
-		</div>
-
-
 		<!-- submits order to orders collection -->
-		<input type="submit" value="Confirm Order">
-
+		<input type="button" name="submit" value="Confirm Order">
 	</form>
 
 	<div class="selected_container">

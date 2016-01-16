@@ -1,4 +1,3 @@
-// somehow import Orders from server and save as Orders
 var curr_Order = [];
 var order_sum = Session.set("sum", 1.50);
 var hoot_menu = [
@@ -8,6 +7,7 @@ var hoot_menu = [
 ];
 
 Template.order_form.helpers({
+
 	curr_orders: function() {
 		return curr_Order;
 	},
@@ -19,29 +19,28 @@ Template.order_form.helpers({
 	sum: function(){
 		return Session.get("sum");
 	},
-
-    "submit .order-form": function (event) {
-		// Prevent default browser form submit
-      	event.preventDefault();
-	 
-      	// Get value from form element
-    	  var text = event.target.text.value;
-	 
-	  	// Insert a task into the collection
-	  	Orders.insert({
-			text: text,
-	        createdAt: new Date() // current time
-		});
-	 
-		// Clear form
-		event.target.text.value = "";
-    }
 })
 
-Template.order.events({
-	'click .delete' : function(){
-			curr_Order.remove(this);
-		}
+Template.order_form.events({
+    'click .order-form': function(event) {
+
+		// Prevent default browser form submit
+      	event.preventDefault();
+	 	
+      	//window.alert("hello");
+
+      	// Get value from form element
+    	// var text = event.target.text.value;
+
+	  	Orders.insert({
+			price: 5,
+	        createdAt: new Date() // current time
+		});
+
+		window.alert(Orders.find());
+
+		window.alert("DID IT");
+    }
 });
 
 Template.menu_items.events({
@@ -51,9 +50,16 @@ Template.menu_items.events({
 		var price = returned_array[1];
 		if (returned_array[0] == true) { 
 			Session.set("sum", Session.get("sum") + price);
+			curr_Order.push(this.name);
 		} else { 
-			Session.set("sum", Session.get("sum") - price); 
+			Session.set("sum", Session.get("sum") - price);
+			var index = curr_Order.indexOf(this.name);
+			if (index > -1) {
+				curr_Order.splice(index, 1);
+			}
 		}
+
+
 	}
 });
 
