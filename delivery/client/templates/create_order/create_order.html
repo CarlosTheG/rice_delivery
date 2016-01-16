@@ -1,0 +1,42 @@
+<head>Order Form</head>
+
+<body>
+	<h1>Hoot</h1>
+	<h1>Coffeehouse</h1>
+
+
+	<form class="order_form">
+
+		<div id="selectBox" onclick="showCheckboxes()">
+			<select>
+				<option>Select menu item(s)</option>
+			</select>
+			<div class="overSelect"></div>
+		</div>
+		<div id="checkboxes">
+			<label for="chicken_banh_mi"> <input type="checkbox" id="chicken_banh_mi"/> Chicken Banh Mi $3.00 </label>
+			<label for="HBCB"> <input type="checkbox" id="HBCB"/> HBCB $2.00 </label>
+		</div>
+
+		<div id="chaus_order" class="form">
+			<select name="chaus_menu_item">
+				<option value="chai_tea_latte">Chai Tea Latte $2.50</option>
+				<option value="drip_coffee">Drip Coffee $1.00</option>
+			</select>
+			<br>
+		</div>
+
+		<input type="text" name="fee" placeholder="1.25">
+
+		<input type="submit" value="Confirm Order">
+
+	</form>
+
+	<div>
+	</div>
+</body>
+	
+<template name = "order">
+</template>
+
+

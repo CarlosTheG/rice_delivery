@@ -12,3 +12,20 @@
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
+
+<template name="yourTemplate">
+
+    {{# KM.MenuButton}}
+        {{# KM.Button args type=flat classList=classArr}}
+            Menu Button
+        {{/ KM.Button}}
+
+        {{# KM.Menu}}
+            {{# KM.Item}} Item 1 {{/ KM.Item}}
+            {{# KM.Item}} Item 2 {{/ KM.Item}}
+            {{# KM.Item}} Item 3 {{/ KM.Item}}
+            {{# KM.Item}} Item 4 {{/ KM.Item}}
+        {{/ KM.Menu}}
+    {{/ KM.MenuButton}}
+
+</template>
