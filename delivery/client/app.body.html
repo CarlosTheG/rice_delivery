@@ -1,8 +1,14 @@
 <body>
+	<p>Your History</p>
 	
-	<p>Yo.</p>
-	
-	
-
-
+	{{> history_feed}}
 </body>
+
+<template name="history_feed">
+	<!-- feed of orders -->
+	<div class="orders">
+		{{#each Orders}}
+			{{> order}}
+		{{/each}}
+	</div>
+</template>
