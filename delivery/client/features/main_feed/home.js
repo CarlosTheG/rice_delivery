@@ -1,7 +1,6 @@
-if (Meteor.isClient) {
-	Template.body.helpers{{
+
+	Template.home_feed.helpers({
 		order: function() {
 			return Orders.find();
 		}
-	}}
-}
+	});
