@@ -16,7 +16,7 @@ var hoot_menu = [
 // ];
 
 if (Meteor.isClient) {
-	Template.body.helpers({
+	Template.order_form.helpers({
 		curr_orders: function() {
 			return curr_Order;
 		},
@@ -30,15 +30,6 @@ if (Meteor.isClient) {
 		}
 	});
 
-	// Template.body.events({
-	// 	'click '
-	// })
-
-	Template.order.events({
-		'click .delete' : function(){
-			curr_Order.remove(this);
-		}
-	});
 
 	Template.menu_items.events({
 		'click .toggle_check': function() {

@@ -1,4 +1,4 @@
-<template name = "order">
+<template name = "order_form">
 	<h1>Hoot</h1>
 	<h1>Coffeehouse</h1>
 
@@ -12,18 +12,6 @@
 			{{#each hoot_menu}}
 				{{> menu_items}}
 			{{/each}}
-		</div>
-
-		<div id="chaus-order" class="form">
-			<!-- TODO: change select to allow multiple selections
-			<select name="chaus-menu-item">
-				{{#each hoot_menu}}
-					{{> drop_down}}
-				{{/each}}
-				<option value="chai_tea_latte">Chai Tea Latte  $2.50</option>
-				<option value="drip_coffee">Drip Coffee  $1.00</option>
-			</select>
-			<br> -->
 		</div>
 
 		<!-- TODO: slider range from 1.25 - max 
@@ -47,16 +35,19 @@
 	<div class="selected_container">
 		<!-- TODO: change item quantity -->
 	</div>
+</template>
+
 <template name = "menu_items">
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}} -- ${{price}}</span>
 </template>	
 
-
+<!-- TODO: implement slider delivery feature
 <template name="delivery">
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}} - ${{price}}</span>
 </template>
+-->
 
 
 
