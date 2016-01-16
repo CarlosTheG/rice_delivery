@@ -1,0 +1,53 @@
+<body>
+	<h1>Hoot</h1>
+	<h1>Coffeehouse</h1>
+
+
+	<form class="order-form">
+
+		<div id="hoot-order">
+			<select>
+				<option>Select menu item(s)</option>
+			</select>
+		</div>
+		<div id="hoot-checkboxes">
+			<label for="chicken_banh_mi"><input type="checkbox" id="chicken_banh_mi"/>Chicken Banh Mi -- $3.00</label>
+			<label for="HBCB"><input type="checkbox" id="HBCB"/>HBCB -- $2.00</label>
+		</div>
+
+		<div id="chaus-order" class="form">
+			<!-- TODO: change select to allow multiple selections -->
+			<select name="chaus-menu-item">
+				<option value="chai_tea_latte">Chai Tea Latte -- $2.50</option>
+				<option value="drip_coffee">Drip Coffee -- $1.00</option>
+			</select>
+			<br>
+		</div>
+
+		<!-- TODO: slider range from 1.25 - max -->
+		<input type="text" name="fee" placeholder="1.25">
+
+		<!-- submits order to orders collection -->
+		<input type="submit" value="Confirm Order">
+
+	</form>
+
+	<div class="selected_container">
+		<ul>
+			{{#each orders}}
+				{{> order}}
+			{{/each}}
+		</ul> 
+		<!-- TODO: display selected items from orders collection -->
+		<!-- TODO: change item quantity -->
+	</div>
+</body>
+	
+<template name = "order">
+	<li>
+		{{title}}
+		<button class="delete">x</button>
+	</li>
+</template>
+
+
