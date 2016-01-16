@@ -33,13 +33,9 @@ Template.order_form.events({
     	// var text = event.target.text.value;
 
 	  	Orders.insert({
-			price: 5,
+			price: Session.set("sum"),
 	        createdAt: new Date() // current time
 		});
-
-		window.alert(Orders.find());
-
-		window.alert("DID IT");
     }
 });
 
