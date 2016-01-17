@@ -7,6 +7,9 @@
 		Enter dropoff location:
 		<input type="text" name="text" placeholder="ex: Duncan College" />
 	</div> -->
+	<form class="location" >
+		Pickup Location: <input type="text" id="location" placeholder="ex: Duncan College" required>
+	</form>
 
 	<div id="hoot-order">
 		<p>Select menu item(s)</p>
@@ -42,6 +45,11 @@
 	</div>
 
 	<br>
+
+	<form class = "details">
+		Details: <br>
+		<textarea rows="4" cols="50" id="details"></textarea>
+	</form>
 
 	<div id="sum">
 		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
