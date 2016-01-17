@@ -1,49 +1,19 @@
 <body>
-	<p>My Feed</p>
+	{{#if currentUser}}
+		<section id="nav">
+			<a href="{{pathFor route='home'}}" class="nav-link"> Home Feed</a>
+			
+			<a href="{{pathFor route='history'}}" class="nav-link"> Your History </a>
+			
+		</section>
+		
+		{{> nav_icon}}
+	{{/if}}
 	
-	{{> history_feed}}
-
 </body>
 
-<template name="history_feed">
-	<!-- feed of orders -->
-	<ul id="slide-out" style="list-style-type: none;">
-		{{#each order}}
-			{{> user_order}} <br>
-		{{/each}}
-	</ul>
-</template>
-
-<template name="user_order">
-	<button type="button" class="btn btn-primary">
-		<li style="list-style-type: none;">
-			Price: ${{price}} <br>
-			Location: {{location}} <br>
-			Requested {{createdAt}} <br>
-			Status: {{status}} <br>
-
-			<span class="order-item">
-				<br>Details: {{details}}<br>
-				Order: {{items_ordered}}<br>
-<!-- 				If pending, user should no longer have option to cancel, instead should have a "Complete Order" button -->
-				<br><button class="delete">Cancel Order</button>
-			</span>
-
-		</li>
-	</button>
-
-	<script>
-		$(document).ready(function(){
-			var counter = 0;
-			$("button").click(function(){
-				if (counter % 2 === 0) {
-					$("span", this).show();
-					counter ++;
-				} else {
-					$("span", this).hide();
-					counter ++;
-				}
-			});
-		});
-	</script>
+<template name="nav_icon">
+	<div id="nav-area" class="template-wrap">
+		<a href="#" class="nav-icon"> MENU </a>
+	</div>
 </template>

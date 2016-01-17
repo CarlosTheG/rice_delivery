@@ -1,33 +1,36 @@
 
 <template name="home">
+	<div id="d-home" class="template-wrap">
 
-	{{#if currentUser}}
-		{{> dashboard}}
+		{{#if currentUser}}
+			{{> dashboard}}
 
-<!-- 		{{#if currentUser.profile.venmo}}
-		{{else}} -->
-		{{> home_venmo}}
-		<!-- {{/if}} -->
+	<!-- 		{{#if currentUser.profile.venmo}}
+			{{else}} -->
+			{{> home_venmo}}
+			<!-- {{/if}} -->
 
-		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
+			<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
 
-		<!-- show this after successful logins -->
-		<!-- Feed and HomePage info goes here -->
-		<p> Home Feed </p>
-		{{> home_feed}}
+			<!-- show this after successful logins -->
+			<!-- Feed and HomePage info goes here -->
+			<p> Home Feed </p>
+			{{> home_feed}}
 
-		<!-- Hoot / Chaus -->
-		<!-- Filters -->
-		<!-- Feed of Orders -->
-		<!-- Order button -->
-		<a class="d-button" href="{{pathFor route='order'}}"> New Order </a>
+			<!-- Hoot / Chaus -->
+			<!-- Filters -->
+			<!-- Feed of Orders -->
+			<!-- Order button -->
+			<a class="d-button" href="{{pathFor route='order'}}"> New Order </a>
 
-		
+			
 
-	{{else}}
-		{{> home_register}}
-		{{> home_login}}
-	{{/if}}
+		{{else}}
+			{{> home_register}}
+			{{> home_login}}
+		{{/if}}
+
+	</div>
 	
 </template>
 
@@ -81,20 +84,33 @@
 
 
 <template name="home_register">
-	<form class="register_form">
-		<input type="text" name="registerName">
-		<input type="email" name="registerEmail">
-		<input type="password" name="registerPassword">
-		<input type="submit" value="register">
-	</form>
+	
+	<div id="welcome"><h2>Rice Delivery</h2></div>
+
+	<div id="home-register" class="home-form">
+		<form class="register_form">
+			<label for="registerName"> Full Name: </label>
+			<input type="text" name="registerName" class="input-fill">
+			<label for="registerEmail"> Email: </label>
+			<input type="email" name="registerEmail" class="input-fill">
+			<label for="registerPassword"> Password: </label>
+			<input type="password" name="registerPassword" class="input-fill">
+			<input type="submit" value="register" class="input-submit">
+		</form>
+	</div>
 </template>
 
 <template name="home_login">
-	<form class="login_form">
-		<input type="email" name="loginEmail">
-		<input type="password" name="loginPassword">
-		<input type="submit" value="login">
-	</form>
+
+	<div id="home-login" class="home-form">
+		<form class="login_form">
+			<label for="loginEmail"> Email: </label>
+			<input type="email" name="loginEmail" class="input-fill">
+			<label for="loginPassword"> Password: </label>
+			<input type="password" name="loginPassword" class="input-fill">
+			<input type="submit" value="login" class="input-submit">
+		</form>
+	</div>
 </template>
 
 <template name="dashboard">

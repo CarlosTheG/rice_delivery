@@ -40,14 +40,8 @@ Meteor.users.deny({
   update() { return true; }
 });
 
+// $(document).ready(function()  {
 
-// venmo
-// Router.route('_oauth/venmo?access_token=:accessToken', function() {
-// 	console.log('route');
-// 	var token = this.params.accessToken
-// 	console.log(token);
+	
 
 // });
-
-
-

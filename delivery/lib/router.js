@@ -79,7 +79,8 @@ Router.route('/accept', {
 
 // later routes
 Router.route('/history', {
-	template: 'history'
+	name: 'history',
+	template: 'user_history'
 });
 
 Router.route('/profile', {
