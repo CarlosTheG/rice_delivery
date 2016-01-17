@@ -6,7 +6,7 @@
 
 <template name="history_feed">
 	<!-- feed of orders -->
-	<ul style="list-style-type: none;">
+	<ul id="slide-out" style="list-style-type: none;">
 		{{#each order}}
 			{{> user_order}} <br>
 		{{/each}}
@@ -18,7 +18,7 @@
 		<li style="list-style-type: none;">
 			Price: ${{price}} <br>
 			Location: {{location}} <br>
-			Created: {{createdAt}} <br>
+			Requested {{createdAt}} <br>
 			Status: {{status}} <br>
 
 			<span class="order-item">
