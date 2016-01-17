@@ -29,10 +29,16 @@
 	<h1>Coffeehouse</h1>
 	<p>Select a size.</p>
 	<form class="coffee-size-checkboxes">
-		<input type="radio" name="size" value="small" checked>small<br>
-		<input type="radio" name="size" value="medium" checked>medium<br>
+		<input type="radio" name="size" value="small" checked>small  
+		<input type="radio" name="size" value="medium" checked>medium  
 		<input type="radio" name="size" value="large" checked>large
 	</form>
+
+	<div id="coffee-house-drink">
+		{{#each coffee_house_menu}}
+			{{> coffee_flavors}}
+		{{/each}}
+	</div>
 
 	<br>
 
@@ -54,6 +60,11 @@
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}} -- ${{price}}</span>
 </template>	
+
+<template name="coffee_flavors">
+	<input type="checkbox" checked="{{checked}}" class="toggle_check">
+	<span class="text">{{name}}  </span>
+</template>
 
 <!-- TODO: implement slider delivery feature
 <template name="delivery">
