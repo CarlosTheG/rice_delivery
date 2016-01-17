@@ -139,6 +139,12 @@ Template.order_review.helpers({
 	}
 })
 
+Template.order_review.events({
+	'click order-count-inc': function() {
+		alert(this);
+	}
+})
+
 function computeCoffeePrice(coffee_array){
 	var size = Session.get("size");
 	var coffee_sum = 0;
