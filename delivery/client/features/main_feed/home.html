@@ -1,7 +1,16 @@
 
 <template name="home">
-	<!-- check user login -->
+
 	{{#if currentUser}}
+		{{> dashboard}}
+
+		{{#if currentUser.profile.venmo}}
+		{{else}}
+			{{> home_venmo}}
+		{{/if}}
+
+		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
+
 		<!-- show this after successful logins -->
 		<!-- Feed and HomePage info goes here -->
 		<p> Home Feed </p>
@@ -13,17 +22,20 @@
 		<!-- Order button -->
 		<a class="d-button" href="{{pathFor route='order'}}"> New Order </a>
 
+		
+
 	{{else}}
-		{{> home_venmo_login}}
+		{{> home_register}}
+		{{> home_login}}
 	{{/if}}
+	
 </template>
 
-<template name="home_venmo_login">
+<template name="home_venmo">
 	<!-- show this if no venmo detected -->
-	<p>you don't have venmo!</p>
-	<div id="venmoLogin">
-	  	{{> loginButtons}}
-  	</div>
+	<p>Our app requires a venmo account!</p>
+	<a href="/venmo/3428/make_payments+access_email+access_balance" class="connect"> Connect to Venmo. </a>
+
 </template>
 
 <template name="home_feed">
@@ -41,7 +53,6 @@
 			Price: ${{price}} <br>
 			Location: {{location}} <br>
 			Requested {{createdAt}} <br>
-
 			<span class="order-item">
 				<br>Details: {{details}}<br>
 				Order: {{items_ordered}}<br>
@@ -68,10 +79,12 @@
 
 </template>
 
+
 <template name="home_register">
 	<form class="register_form">
+		<input type="text" name="registerName">
 		<input type="email" name="registerEmail">
-		<input type="password" name="registerName">
+		<input type="password" name="registerPassword">
 		<input type="submit" value="register">
 	</form>
 </template>
@@ -79,8 +92,12 @@
 <template name="home_login">
 	<form class="login_form">
 		<input type="email" name="loginEmail">
-		<input type="password" name="loginName">
+		<input type="password" name="loginPassword">
 		<input type="submit" value="login">
 	</form>
+</template>
 
+<template name="dashboard">
+    <p>You're logged in.</p>
+    <p><a href="#" class="logout">Logout</a></p>
 </template>

@@ -1,4 +1,5 @@
 
+
   Template.history_feed.helpers({
     order: function() {
       // Uncomment following line once currentUser is working
@@ -18,3 +19,4 @@
       Orders.remove(this._id);
     }
   });
+
