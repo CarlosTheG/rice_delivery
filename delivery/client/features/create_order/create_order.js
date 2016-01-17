@@ -84,6 +84,7 @@ Template.order_form.events({
 	        status: "active"
 		});
 
+	  	sweetAlert("Your order has been placed!", "Have fun eating your food.", "success");
 		Router.go("/");
     },
 
