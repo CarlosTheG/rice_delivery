@@ -22,7 +22,7 @@ Router.route('/_oauth/:accessToken', {
 		var token = this.params.query;
 		console.log(token);
 		console.log(token["access_token"]);
-		Meteor.users.update(Meteor.userId(), {$set: {"profile.venmo": true}});
+		// Meteor.users.update(Meteor.userId(), {$set: {"profile.venmo": true}});
 		Meteor.users.update(Meteor.userId(), {$set: {"profile.accessToken": token["access_token"]}});
 		this.redirect('/');
 	}

@@ -4,10 +4,10 @@
 	{{#if currentUser}}
 		{{> dashboard}}
 
-		{{#if currentUser.profile.venmo}}
-		{{else}}
-			{{> home_venmo}}
-		{{/if}}
+<!-- 		{{#if currentUser.profile.venmo}}
+		{{else}} -->
+		{{> home_venmo}}
+		<!-- {{/if}} -->
 
 		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
 
