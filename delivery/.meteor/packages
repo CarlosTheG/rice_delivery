@@ -24,3 +24,4 @@ accounts-password
 service-configuration
 accounts-base
 webapp
+momentjs:moment

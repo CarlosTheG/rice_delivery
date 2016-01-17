@@ -1,35 +1,63 @@
 <template name = "order_form">
+	
 	<h1>Hoot</h1>
-	<h1>Coffeehouse</h1>
 
+
+<!-- 	<div id="location">
+		Enter dropoff location:
+		<input type="text" name="text" placeholder="ex: Duncan College" />
+	</div> -->
+	<form class="location" >
+		Pickup Location: <input type="text" id="location" placeholder="ex: Duncan College" required>
+	</form>
+
+	<div id="hoot-order">
+		<p>Select menu item(s)</p>
+	</div>
+	<div id="hoot-checkboxes">
+		{{#each hoot_menu}}
+			{{> menu_items}}
+		{{/each}}
+	</div>
+
+	<!-- TODO: slider range from 1.25 - max 
+	<div id="delivery payment">
+		Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
+		{{#each delivery_options}}
+			{{> delivery}}
+		{{/each}}
+	</div> -->
+
+
+	<h1>Coffeehouse</h1>
+	<p>Select a size.</p>
+	<form class="coffee-size-checkboxes">
+		<input type="radio" name="size" value="small" checked>small  
+		<input type="radio" name="size" value="medium" checked>medium  
+		<input type="radio" name="size" value="large" checked>large
+	</form>
+
+	<p>Select flavor(s).</p>
+	<div id="coffee-house-drink">
+		{{#each coffee_house_menu}}
+			{{> coffee_flavors}}
+		{{/each}}
+	</div>
+
+	<br>
+
+	<form class = "details">
+		Details: <br>
+		<textarea rows="4" cols="50" id="details"></textarea>
+	</form>
+
+	<div id="sum">
+		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
+	</div>
 
 	<form class="order-form">
-
-		<div id="hoot-order">
-			Select menu item(s)
-		</div>
-		<div id="hoot-checkboxes">
-			{{#each hoot_menu}}
-				{{> menu_items}}
-			{{/each}}
-		</div>
-
-		<!-- TODO: slider range from 1.25 - max 
-		<div id="delivery payment">
-			Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
-			{{#each delivery_options}}
-				{{> delivery}}
-			{{/each}}
-		</div> -->
-
-		<div id="sum">
-			Your total (w/ delivery) is: ${{sum}}
-		</div>
-
-
 		<!-- submits order to orders collection -->
-		<input type="submit" value="Confirm Order">
-
+		<input type="button" name="submit" value="Confirm Order">
 	</form>
 
 	<div class="selected_container">
@@ -41,6 +69,11 @@
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}} -- ${{price}}</span>
 </template>	
+
+<template name="coffee_flavors">
+	<input type="checkbox" checked="{{checked}}" class="toggle_check">
+	<span class="text">{{name}}  </span>
+</template>
 
 <!-- TODO: implement slider delivery feature
 <template name="delivery">

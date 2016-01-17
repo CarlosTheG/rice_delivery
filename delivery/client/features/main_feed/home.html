@@ -1,9 +1,23 @@
+
 <template name="home">
 
 	{{#if currentUser}}
+<<<<<<< HEAD
 		{{> dashboard}}
 		{{> home_feed}}
 		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
+=======
+		<!-- show this after successful logins -->
+		<!-- Feed and HomePage info goes here -->
+		<p> Home Feed </p>
+		{{> home_feed}}
+
+		<!-- Hoot / Chaus -->
+		<!-- Filters -->
+		<!-- Feed of Orders -->
+		<!-- Order button -->
+		<a class="d-button" href="{{pathFor route='order'}}"> New Order </a>
+>>>>>>> master
 
 		{{#if currentUser.profile.venmo}}
 		{{else}}
@@ -26,17 +40,49 @@
 
 <template name="home_feed">
 	<!-- feed of orders -->
-	<div class="orders">
-		{{#each Orders}}
-			{{> order}}
+	<ul style="list-style-type: none;">
+		{{#each order}}
+			{{> individual_order}} <br>
 		{{/each}}
-	</div>
+	</ul>
 </template>
 
-<template name="order">
-	<!-- specific order details -->
+<template name="individual_order">
+	<button type="button" class="btn btn-primary">
+		<li style="list-style-type: none;">
+			Price: ${{price}} <br>
+			Location: {{location}} <br>
+			Requested {{createdAt}} <br>
+
+<<<<<<< HEAD
+=======
+			<span class="order-item">
+				<br>Details: {{details}}<br>
+				Order: {{items_ordered}}<br>
+				<button class="accept">Deliver Order</button>
+			</span>
+
+		</li>
+	</button>
+
+	<script>
+		$(document).ready(function(){
+			var counter = 0;
+			$("button").click(function(){
+				if (counter % 2 === 0) {
+					$("span", this).show();
+					counter ++;
+				} else {
+					$("span", this).hide();
+					counter ++;
+				}
+			});
+		});
+	</script>
+
 </template>
 
+>>>>>>> master
 <template name="home_register">
 	<form class="register_form">
 		<input type="text" name="registerName">
@@ -52,9 +98,13 @@
 		<input type="password" name="loginPassword">
 		<input type="submit" value="login">
 	</form>
+<<<<<<< HEAD
 </template>
 
 <template name="dashboard">
     <p>You're logged in.</p>
     <p><a href="#" class="logout">Logout</a></p>
+=======
+
+>>>>>>> master
 </template>
