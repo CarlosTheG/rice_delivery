@@ -12,7 +12,6 @@ Template.home_register.events({
 		    password: passwordVar,
 		    profile: {
 		    	name: nameVar,
-		    	venmo: false
 		    }
 		});
 	}
