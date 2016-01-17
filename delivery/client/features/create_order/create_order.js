@@ -1,9 +1,9 @@
-var curr_Order = [];
 var order_sum = Session.set("sum", 1.50);
-var size = Session.set("size", "small");
-var coffee_sum = Session.set("coffee_sum", 0);
+var size = Session.set("size", "large"); //needs to be fixed. start up has bugs
+var coffee_sum = Session.set("coffee_sum", 0); 
+Session.set("total_order", {})
 
-var business_list = ["Coffee House", "Hoot"]; //todo: misc
+//var business_list = ["Coffee House", "Hoot"]; //todo: misc
 
 var hoot_menu = [
 	{name: "HBCB", price:2.50, checked:false}, 
@@ -40,15 +40,11 @@ var coffee_prices = {
 	}
 };
 
-var coffee_selected = [];
+var curr_Order = {};
+var coffee_selected = {};
 
 
 Template.order_form.helpers({
-
-	curr_orders: function() {
-		return curr_Order;
-	},
-
 	hoot_menu: function() {
 		return hoot_menu;
 	},
@@ -65,6 +61,14 @@ Template.order_form.helpers({
 
 		return hoot_sum + coffee_sum;
 	},
+
+	full_order: function(){
+		var obj = Session.get("total_order");
+		if (obj == undefined){
+			obj = {};
+		} 
+		return Object.keys(obj);
+	}
 })
 
 Template.order_form.events({
@@ -95,14 +99,14 @@ Template.menu_items.events({
 		this.checked = !this.checked;
 		if (this.checked == true) { 
 			Session.set("sum", Session.get("sum") + this.price);
-			curr_Order.push(this.name);
+			curr_Order[this.name] = 1;
 		} else { 
 			Session.set("sum", Session.get("sum") - this.price);
-			var index = curr_Order.indexOf(this.name);
-			if (index > -1) {
-				curr_Order.splice(index, 1);
-			}
+			delete curr_Order[this.name];
 		}
+
+		Session.set("total_order", mergeDict(curr_Order, coffee_selected));
+
 	}
 });
 
@@ -110,35 +114,60 @@ Template.coffee_flavors.events({
 	'click .toggle_check':function() {
 		this.checked = !this.checked;
 		if (this.checked == true){
-			coffee_selected.push(this.name);
+			coffee_selected[this.name] = 1;
 		} else {
-			var index = coffee_selected.indexOf(this.name);
-			if (index > -1){
-				coffee_selected.splice(index, 1);
-			}
+			delete coffee_selected[this.name];
 		}
 		computeCoffeePrice(coffee_selected);
+		Session.set("total_order", mergeDict(curr_Order, coffee_selected));
+	}
+
+})
+
+Template.order_review.helpers({
+	number: function() {
+		if (this in coffee_selected) return coffee_selected[this];
+
+		return curr_Order[this];
+	}, 
+	item: function() {
+		return this;
 	}
 })
 
-function computeCoffeePrice(coffee_list){
+function computeCoffeePrice(coffee_array){
 	var size = Session.get("size");
 	var coffee_sum = 0;
 
-	for (var i = 0; i < coffee_list.length; i++) {
-		var flavor = coffee_list[i];
-		coffee_sum += coffee_prices[flavor][size];
+	for (key in coffee_array) {
+		coffee_sum += coffee_prices[key][size] * coffee_array[key];
 	};
 
 	Session.set("coffee_sum", coffee_sum);
 }
 
 function getItemList(){
-	var item_list = curr_Order;
-	for (var i=0; i< coffee_selected.length; i++){
-		item_list.push(Session.get("size") +coffee_selected[i]);
+	//returns a user friendly version of the item arrays
+	var item_list = []
+	for (key in curr_Order){
+		item_list.push(" "+curr_Order[key] +" "+ key);
+	}
+	for (key in coffee_selected){
+		item_list.push(" "+coffee_selected[key] + " " + 
+					Session.get("size") + " " + 
+					key);
 	}
 	return item_list;
+}
+
+function mergeDict(dict1, dict2){
+	//merges two 1 dimensional associative arrays
+	dict3 = {}
+	for (key in dict1)
+		dict3[key] = dict1[key];
+	for (key in dict2)
+		dict3[key] = dict2[key];
+	return dict3;
 }
 
 // TODO: Create slider

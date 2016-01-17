@@ -51,6 +51,17 @@
 		<textarea rows="4" cols="50" id="details"></textarea>
 	</form>
 
+
+	<br>
+	<form class="review_order">
+		Review your order. <br>
+		<ul>
+			{{#each full_order}}
+				{{> order_review}}
+			{{/each}}
+		</ul>
+	</form>
+
 	<div id="sum">
 		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
 	</div>
@@ -73,6 +84,12 @@
 <template name="coffee_flavors">
 	<input type="checkbox" checked="{{checked}}" class="toggle_check">
 	<span class="text">{{name}}  </span>
+</template>
+
+<template name ="order_review">
+	<li>
+		<span class="text"> {{number}} {{item}}(s)</span>
+	</li>
 </template>
 
 <!-- TODO: implement slider delivery feature
