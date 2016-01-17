@@ -5,15 +5,26 @@ Router.configure({
 	// layoutTemplate: 'main'
 });
 
+// venmo routes
+Router.route('/venmo/:clientId/:scope', {where: 'server'}).get(function() {
+	this.response.writeHead(302, {
+    	'Location': "https://api.venmo.com/v1/oauth/authorize?client_id=" + this.params.clientId + "&scope=" + this.params.scope
+  	});
+  	console.log('redirecting...');
+  	this.response.end();
+});
+
+Router.route('/_oauth/:accessToken', {
+	data: function(){
+		var token = this.params.query
+		console.log(token);
+    }
+});
+
+
+
 
 // login routes
-Router.route('/venmo_login', {
-	template: 'venmo_login'
-});
-
-Router.route('/google_login', {
-	template: 'google_login'
-});
 
 Router.route('/', {
 	name: 'home',

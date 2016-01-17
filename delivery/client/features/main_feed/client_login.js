@@ -3,20 +3,18 @@ Template.home_register.events({
 	// create user
 	'submit form': function(event) {
 		event.preventDefault();
-		console.log('registration form submitted');
 		var nameVar = event.target.registerName.value;
 		var emailVar = event.target.registerEmail.value;
 		var passwordVar = event.target.registerPassword.value;
-		// check rice email
-		alert(nameVar);
-		// if valid, create user:
+		console.log('registration form submitted');
 		Accounts.createUser({
-			email: emailVar,
-			password: passwordVar,
+		    email: emailVar,
+		    password: passwordVar,
+		    profile: {
+		    	name: nameVar,
+		    	venmo: false
+		    }
 		});
-		alert(Meteor.user_Id());
-
-		Meteor.loginWithPassword(emailVar, passwordVar);
 	}
 });
 
@@ -44,4 +42,13 @@ Meteor.users.deny({
 });
 
 
-// venmo authentication
+// venmo
+// Router.route('_oauth/venmo?access_token=:accessToken', function() {
+// 	console.log('route');
+// 	var token = this.params.accessToken
+// 	console.log(token);
+
+// });
+
+
+

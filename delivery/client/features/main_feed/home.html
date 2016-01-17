@@ -5,17 +5,23 @@
 		{{> home_feed}}
 		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
 
+		{{#if currentUser.profile.venmo}}
+		{{else}}
+			{{> home_venmo}}
+		{{/if}}
+
 	{{else}}
 		{{> home_register}}
 		{{> home_login}}
-		{{> home_venmo}}
 	{{/if}}
 	
 </template>
 
 <template name="home_venmo">
 	<!-- show this if no venmo detected -->
-	<p>you don't have venmo!</p>
+	<p>Our app requires a venmo account!</p>
+	<a href="/venmo/3428/make_payments+access_email+access_balance" class="connect"> Connect to Venmo. </a>
+
 </template>
 
 <template name="home_feed">
