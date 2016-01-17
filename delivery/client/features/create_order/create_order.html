@@ -50,7 +50,9 @@
 		Details: <br>
 		<textarea rows="4" cols="50" id="details"></textarea>
 	</form>
-
+	<div class="slider">
+		{{> slider}}
+	</div>
 	<div id="sum">
 		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
 	</div>
@@ -82,5 +84,27 @@
 </template>
 -->
 
+
+<template name="slider">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> 
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body style="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+  <div data-role="main" class="ui-content">
+    <form method="post" action="demoform.asp">
+      <div data-role="rangeslider">
+        <label for="price-max">Price:</label>
+        <input type="range" name="price-max" id="price-max" value="800" min="1.25" max="10" step=".25" >
+      </div>
+
+      </form>
+  </div>
+
+</body>
+</template>
 
 
