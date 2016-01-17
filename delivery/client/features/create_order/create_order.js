@@ -1,7 +1,9 @@
 var order_sum = Session.set("sum", 1.50);
 var size = Session.set("size", "large"); //needs to be fixed. start up has bugs
 var coffee_sum = Session.set("coffee_sum", 0); 
-Session.set("total_order", {})
+Session.set("total_order", {});
+Session.set("hoot_order", {});
+Session.set("coffee_order", {});
 
 //var business_list = ["Coffee House", "Hoot"]; //todo: misc
 
@@ -40,9 +42,6 @@ var coffee_prices = {
 	}
 };
 
-var curr_Order = {};
-var coffee_selected = {};
-
 
 Template.order_form.helpers({
 	hoot_menu: function() {
@@ -56,14 +55,14 @@ Template.order_form.helpers({
 	sum: function(){
 		var hoot_sum = Session.get("sum");
 
-		computeCoffeePrice(coffee_selected);
+		computeCoffeePrice(Session.get("coffee_order"));
 		var coffee_sum = Session.get("coffee_sum");
 
 		return hoot_sum + coffee_sum;
 	},
 
 	full_order: function(){
-		var obj = Session.get("total_order");
+		obj = mergeDict(Session.get("hoot_order"), Session.get("coffee_order"));
 		if (obj == undefined){
 			obj = {};
 		} 
@@ -76,11 +75,12 @@ Template.order_form.events({
 		// Prevent default browser form submit
       	event.preventDefault();
 
-      	window.alert(Meteor.userId());
+      	//window.alert(Meteor.userId());
+      	var cost = Session.get("sum") + Session.get("coffee_sum");
 
       	//insert new order into Orders
 	  	Orders.insert({
-			price: Session.get("sum"),
+			price: cost,
 	        createdAt: new Date(), // current time
 	        status: "Active",
 	        items_ordered: getItemList(),
@@ -101,37 +101,44 @@ Template.order_form.events({
 Template.menu_items.events({
 	'click .toggle_check': function() {
 		this.checked = !this.checked;
+		var temp = Session.get("hoot_order");
 		if (this.checked == true) { 
 			Session.set("sum", Session.get("sum") + this.price);
-			curr_Order[this.name] = 1;
+
+			temp[this.name] = 1;
 		} else { 
 			Session.set("sum", Session.get("sum") - this.price);
-			delete curr_Order[this.name];
+
+			delete temp[this.name];
 		}
 
-		Session.set("total_order", mergeDict(curr_Order, coffee_selected));
-
+		Session.set("hoot_order", temp);
 	}
 });
 
 Template.coffee_flavors.events({
 	'click .toggle_check':function() {
 		this.checked = !this.checked;
+		var temp = Session.get("coffee_order");
 		if (this.checked == true){
-			coffee_selected[this.name] = 1;
+			temp[this.name] = 1;
 		} else {
-			delete coffee_selected[this.name];
+			delete temp[this.name];
 		}
-		computeCoffeePrice(coffee_selected);
-		Session.set("total_order", mergeDict(curr_Order, coffee_selected));
+		Session.set("coffee_order", temp);
+
+		computeCoffeePrice(Session.get("coffee_order"));
 	}
 
 })
 
 Template.order_review.helpers({
 	number: function() {
-		if (this in coffee_selected) return coffee_selected[this];
-
+		if (this in Session.get("coffee_order")) {
+			var coffee_selected = Session.get("coffee_order");
+			return coffee_selected[this];
+		} 
+		var curr_Order = Session.get("hoot_order");
 		return curr_Order[this];
 	}, 
 	item: function() {
@@ -140,8 +147,76 @@ Template.order_review.helpers({
 })
 
 Template.order_review.events({
-	'click order-count-inc': function() {
-		alert(this);
+	'click .order-count-inc': function() {
+		var flag = false;
+		var object = {};
+		for (i=0; i<hoot_menu.length; i++){
+			if (hoot_menu[i].name == this){
+				object = hoot_menu[i];
+				flag = true;
+				break;
+			}
+		}
+
+		if (flag){
+			Session.set("sum", Session.get("sum") + object.price);
+
+			var temp = Session.get("hoot_order");
+			temp[this] += 1;
+			Session.set("hoot_order", temp);
+		} else {
+			for (i=0; i<coffee_menu.length; i++){
+				if (coffee_menu[i].name == this){
+					object = coffee_menu[i];
+					break;
+				}
+			}
+
+			var temp = Session.get("coffee_order");
+			temp[this] += 1;
+			Session.set("coffee_order", temp);
+
+			computeCoffeePrice(Session.get("coffee_order"));
+		}
+	},
+
+	'click .order-count-dec': function() {
+		var flag = false;
+		var object = {};
+		for (i=0; i<hoot_menu.length; i++){
+			if (hoot_menu[i].name == this){
+				object = hoot_menu[i];
+				flag = true;
+				break;
+			}
+		}
+
+		if (flag){
+			Session.set("sum", Session.get("sum") + object.price);
+
+			var temp = Session.get("hoot_order");
+			temp[this] -= 1;
+			if (temp[this] == 0){
+				delete temp[this];
+			}
+			Session.set("hoot_order", temp);
+		} else {
+			for (i=0; i<coffee_menu.length; i++){
+				if (coffee_menu[i].name == this){
+					object = coffee_menu[i];
+					break;
+				}
+			}
+
+			var temp = Session.get("coffee_order");
+			temp[this] -= 1;
+			if (temp[this] == 0){
+				delete temp[this];
+			}
+			Session.set("coffee_order", temp);
+
+			computeCoffeePrice(Session.get("coffee_order"));
+		}
 	}
 })
 
@@ -159,6 +234,9 @@ function computeCoffeePrice(coffee_array){
 function getItemList(){
 	//returns a user friendly version of the item arrays
 	var item_list = []
+	var curr_Order = Session.get("hoot_order");
+	var coffee_selected = Session.get("coffee_order");
+
 	for (key in curr_Order){
 		item_list.push(" "+curr_Order[key] +" "+ key);
 	}
