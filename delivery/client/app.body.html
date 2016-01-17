@@ -1,14 +1,46 @@
 <body>
-	<p>Your History</p>
+	<p>My Feed</p>
 	
 	{{> history_feed}}
 </body>
 
 <template name="history_feed">
 	<!-- feed of orders -->
-	<div class="orders">
-		{{#each Orders}}
-			{{> order}}
+	<ul style="list-style-type: none;">
+		{{#each order}}
+			{{> user_order}} <br>
 		{{/each}}
-	</div>
+	</ul>
+</template>
+
+<template name="user_order">
+	<button type="button" class="btn btn-primary">
+		<li style="list-style-type: none;">
+			Price: ${{price}} <br>
+			Location: {{location}} <br>
+			Created: {{createdAt}} <br>
+			Status: {{status}} <br>
+
+			<span class="order-item">
+				<br>Details: {{details}}<br>
+				<br><button class="delete">Cancel Order</button>
+			</span>
+
+		</li>
+	</button>
+
+	<script>
+		$(document).ready(function(){
+			var counter = 0;
+			$("button").click(function(){
+				if (counter % 2 === 0) {
+					$("span", this).show();
+					counter ++;
+				} else {
+					$("span", this).hide();
+					counter ++;
+				}
+			});
+		});
+	</script>
 </template>
