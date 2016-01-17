@@ -1,6 +1,6 @@
 <template name = "order_form">
+	
 	<h1>Hoot</h1>
-	<h1>Coffeehouse</h1>
 
 
 <!-- 	<div id="location">
@@ -9,7 +9,7 @@
 	</div> -->
 
 	<div id="hoot-order">
-		Select menu item(s)
+		<p>Select menu item(s)</p>
 	</div>
 	<div id="hoot-checkboxes">
 		{{#each hoot_menu}}
@@ -25,8 +25,19 @@
 		{{/each}}
 	</div> -->
 
+
+	<h1>Coffeehouse</h1>
+	<p>Select a size.</p>
+	<form class="coffee-size-checkboxes">
+		<input type="radio" name="size" value="small" checked>small<br>
+		<input type="radio" name="size" value="medium" checked>medium<br>
+		<input type="radio" name="size" value="large" checked>large
+	</form>
+
+	<br>
+
 	<div id="sum">
-		Your total (w/ delivery) is: ${{sum}}
+		Your total (w/ delivery) is: ${{sum}} <br>
 	</div>
 
 	<form class="order-form">
