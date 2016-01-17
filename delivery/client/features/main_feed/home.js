@@ -25,7 +25,7 @@ Template.individual_order.events({
         type: "warning",   showCancelButton: true,   confirmButtonColor: "#008fb3",   
         confirmButtonText: "Yes, I accept!",   cancelButtonText: "No, take me back!",   
         closeOnConfirm: false,   closeOnCancel: true }, 
-        function(isConfirm, id){   
+        function(isConfirm){   
           if (isConfirm) {     
             swal("Sweet!", "Check your feed for delivery details.", "success");
             // Need to update deliverer
