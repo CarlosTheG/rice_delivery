@@ -34,6 +34,7 @@
 		<input type="radio" name="size" value="large" checked>large
 	</form>
 
+	<p>Select flavor(s).</p>
 	<div id="coffee-house-drink">
 		{{#each coffee_house_menu}}
 			{{> coffee_flavors}}
@@ -43,7 +44,7 @@
 	<br>
 
 	<div id="sum">
-		Your total (w/ delivery) is: ${{sum}} <br>
+		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
 	</div>
 
 	<form class="order-form">

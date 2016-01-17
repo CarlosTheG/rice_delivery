@@ -69,19 +69,16 @@ Template.order_form.helpers({
 
 Template.order_form.events({
     'click .order-form': function(event) {
-
 		// Prevent default browser form submit
       	event.preventDefault();
-	 	
-      	//window.alert("hello");
 
-      	// Get value from form element
-    	// var text = event.target.text.value;
 
+      	//insert new order into Orders
 	  	Orders.insert({
 			price: Session.get("sum"),
 	        createdAt: new Date(), // current time
-	        status: "active"
+	        status: "active",
+	        items_ordered: getItemList()
 		});
 
 		Router.go("/");
@@ -134,6 +131,14 @@ function computeCoffeePrice(coffee_list){
 	};
 
 	Session.set("coffee_sum", coffee_sum);
+}
+
+function getItemList(){
+	var item_list = curr_Order;
+	for (var i=0; i<coffee_list.length; i++){
+		item_list.push(Session.get("size") +coffee_list[i]);
+	}
+	return item_list;
 }
 
 // TODO: Create slider
