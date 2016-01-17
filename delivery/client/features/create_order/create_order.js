@@ -14,7 +14,7 @@ var hoot_menu = [
 ];
 
 var coffee_size = [
-	{name: "small", checked: true}, 
+	{name: "small", checked: false}, 
 	{name: "medium", checked: false},
 	{name:"large", checked: false}
 ];
@@ -198,6 +198,7 @@ Template.order_review.events({
 			temp[this] -= 1;
 			if (temp[this] == 0){
 				delete temp[this];
+				uncheck(this); //unchecks the checkbox
 			}
 			Session.set("hoot_order", temp);
 		} else {
@@ -212,6 +213,7 @@ Template.order_review.events({
 			temp[this] -= 1;
 			if (temp[this] == 0){
 				delete temp[this];
+				uncheck(this)  //unchecks the checkbox
 			}
 			Session.set("coffee_order", temp);
 
@@ -256,6 +258,22 @@ function mergeDict(dict1, dict2){
 	for (key in dict2)
 		dict3[key] = dict2[key];
 	return dict3;
+}
+
+function uncheck(item_name){
+	//searches through both menus and unchecks the item
+	for (i=0; i<coffee_menu.length; i++){
+		if (coffee_menu[i].name == item_name){
+			coffee_menu[i].checked = false;
+			return
+		}
+	}
+	for (i=0; i<hoot_menu.length; i++){
+		if (hoot_menu[i].name == item_name){
+			hoot_menu[i].checked = false;
+			return
+		}
+	}
 }
 
 // TODO: Create slider
