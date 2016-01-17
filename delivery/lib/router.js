@@ -20,9 +20,10 @@ Router.route('/venmo/:clientId/:scope', {where: 'server'}).get(function() {
 Router.route('/_oauth/:accessToken', {
 	data: function() {
 		var token = this.params.query;
-		console.log(token[access_token]);
+		console.log(token);
+		console.log(token["access_token"]);
 		Meteor.users.update(Meteor.userId(), {$set: {"profile.venmo": true}});
-		Meteor.users.update(Meteor.userId(), {$set: {"profile.authToken": token[access_token]}});
+		Meteor.users.update(Meteor.userId(), {$set: {"profile.accessToken": token["access_token"]}});
 		this.redirect('/');
 	}
 })
