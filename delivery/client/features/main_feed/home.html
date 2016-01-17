@@ -2,11 +2,15 @@
 <template name="home">
 
 	{{#if currentUser}}
-<<<<<<< HEAD
 		{{> dashboard}}
-		{{> home_feed}}
+
+		{{#if currentUser.profile.venmo}}
+		{{else}}
+			{{> home_venmo}}
+		{{/if}}
+
 		<a class="d-button" href="{{pathFor route='order'}}"> Order </a>
-=======
+
 		<!-- show this after successful logins -->
 		<!-- Feed and HomePage info goes here -->
 		<p> Home Feed </p>
@@ -17,12 +21,8 @@
 		<!-- Feed of Orders -->
 		<!-- Order button -->
 		<a class="d-button" href="{{pathFor route='order'}}"> New Order </a>
->>>>>>> master
 
-		{{#if currentUser.profile.venmo}}
-		{{else}}
-			{{> home_venmo}}
-		{{/if}}
+		
 
 	{{else}}
 		{{> home_register}}
@@ -53,9 +53,6 @@
 			Price: ${{price}} <br>
 			Location: {{location}} <br>
 			Requested {{createdAt}} <br>
-
-<<<<<<< HEAD
-=======
 			<span class="order-item">
 				<br>Details: {{details}}<br>
 				Order: {{items_ordered}}<br>
@@ -82,7 +79,7 @@
 
 </template>
 
->>>>>>> master
+
 <template name="home_register">
 	<form class="register_form">
 		<input type="text" name="registerName">
@@ -98,13 +95,9 @@
 		<input type="password" name="loginPassword">
 		<input type="submit" value="login">
 	</form>
-<<<<<<< HEAD
 </template>
 
 <template name="dashboard">
     <p>You're logged in.</p>
     <p><a href="#" class="logout">Logout</a></p>
-=======
-
->>>>>>> master
 </template>

@@ -5,9 +5,6 @@ Template.home_feed.helpers({
 	}
 });
 
-
-<<<<<<< HEAD
-=======
 Template.home_feed.helpers({
 	order: function() {
 		return Orders.find( {status: "Active"});
@@ -29,4 +26,4 @@ Template.individual_order.events({
     	window.alert("accepted");
     }
   });
->>>>>>> master
+
