@@ -43,6 +43,7 @@ $(document).ready(function()  {
             click = 0;
         }
     });
+});
 
 
 Template.user_order.helpers({
@@ -52,7 +53,7 @@ Template.user_order.helpers({
   button_text: function() {
     if (this.status === "Active"){
       return "Cancel Order";
-    } else if (this.status == "Pending Delivery") {
+    } else if (this.status === "Pending Delivery") {
       return "Complete Order";
     } else {
       return "Delete Order";
@@ -69,21 +70,3 @@ Template.user_order.events({
     }
   }
 });
-
-// var click = 0;
-// Template.nav_icon.events({
-    
-//     'click .nav-icon, click .nav-link' : function() {
-        
-//         if (click === 0) {
-//             $('#nav').css({'left':'0px'});
-//             click = 1;
-//             console.log(click);
-//         } else {
-//             $('#nav').css({'left':'-200px'});
-//             click = 0;
-//             console.log(click);
-//         }
-//     }
-    
-// });
