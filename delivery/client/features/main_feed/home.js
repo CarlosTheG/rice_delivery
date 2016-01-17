@@ -1,7 +1,7 @@
 
 Template.home_feed.helpers({
 	order: function() {
-		return Orders.find( {status: "active"});
+		return Orders.find( {status: "Active"});
 	}
 });
 

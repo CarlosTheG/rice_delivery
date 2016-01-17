@@ -10,6 +10,9 @@
 		Enter dropoff location:
 		<input type="text" name="text" placeholder="ex: Duncan College" />
 	</div> -->
+	<form class="location" >
+		Pickup Location: <input type="text" id="location" placeholder="ex: Duncan College" required>
+	</form>
 
 	<div id="hoot-order">
 		<p>Select menu item(s)</p>
@@ -37,6 +40,7 @@
 		<input type="radio" name="size" value="large" checked>large
 	</form>
 
+	<p>Select flavor(s).</p>
 	<div id="coffee-house-drink">
 		{{#each coffee_house_menu}}
 			{{> coffee_flavors}}
@@ -45,8 +49,13 @@
 
 	<br>
 
+	<form class = "details">
+		Details: <br>
+		<textarea rows="4" cols="50" id="details"></textarea>
+	</form>
+
 	<div id="sum">
-		Your total (w/ delivery) is: ${{sum}} <br>
+		<p style="font-size: 120%">Your total (w/ delivery) is: ${{sum}} </p><br>
 	</div>
 
 	<form class="order-form">
