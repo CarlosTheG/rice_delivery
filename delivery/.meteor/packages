@@ -25,3 +25,4 @@ service-configuration
 http
 iron:router
 accounts-password
+accounts-base
