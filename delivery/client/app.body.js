@@ -1,7 +1,7 @@
 
   Template.history_feed.helpers({
     order: function() {
-      return Orders.find( {user : currentUser } );
+      return Orders.find( {creator : Meteor.userId() } );
       //return Orders.find();
     }
   });
