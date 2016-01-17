@@ -19,17 +19,23 @@ Template.user_order.events({
     }
 });
 
+// Template.nav_icon.onRendered({
+//     click = 0;
+// });
+
 $(document).ready(function()  {
-    var click = 0;
+    click = 0;
     $('.nav-icon').click(function() {
         if (click === 0) {
             $('#nav').css({'left': '0px'});
             $('.template-wrap').css({'left': '200px'});
             click = 1;
+            console.log('click');
         } else {
             $('#nav').css({'left': '-200px'});
             $('.template-wrap').css({'left': '0px'});
             click = 0;
+            console.log('click');
         }
     });
     $('.nav-link').click(function() {
@@ -37,10 +43,12 @@ $(document).ready(function()  {
             $('#nav').css({'left': '0px'});
             $('.template-wrap').css({'left': '200px'});
             click = 1;
+            console.log('click');
         } else {
             $('#nav').css({'left': '-200px'});
             $('.template-wrap').css({'left': '0px'});
             click = 0;
+            console.log('click');
         }
     });
 });

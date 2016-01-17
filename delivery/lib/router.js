@@ -15,7 +15,7 @@ Router.route('/venmo/:clientId/:scope', {where: 'server'}).get(function() {
   	console.log('redirecting...');
   	this.response.end();
 });
-
+	
 // CLIENT-SIDE FLOW AUTH-TOKEN
 Router.route('/_oauth/:accessToken', {
 	data: function() {
