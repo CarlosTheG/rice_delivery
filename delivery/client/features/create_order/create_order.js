@@ -192,7 +192,7 @@ Template.order_review.events({
 		}
 
 		if (flag){
-			Session.set("sum", Session.get("sum") + object.price);
+			Session.set("sum", Session.get("sum") - object.price);
 
 			var temp = Session.get("hoot_order");
 			temp[this] -= 1;
