@@ -76,6 +76,8 @@ Template.order_form.events({
 		// Prevent default browser form submit
       	event.preventDefault();
 
+      	window.alert(Meteor.userId());
+
       	//insert new order into Orders
 	  	Orders.insert({
 			price: Session.get("sum"),
@@ -83,9 +85,11 @@ Template.order_form.events({
 	        status: "Active",
 	        items_ordered: getItemList(),
 	        location: document.getElementById("location").value,
-	        details: document.getElementById("details").value
+	        details: document.getElementById("details").value,
+	        creator: Meteor.userId()
 		});
 
+	  	sweetAlert("Your order has been placed!", "Have fun eating your food.", "success");
 		Router.go("/");
     },
 

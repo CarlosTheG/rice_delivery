@@ -2,9 +2,8 @@
 
   Template.history_feed.helpers({
     order: function() {
-      // Uncomment following line once currentUser is working
-      // return Orders.find( {user : currentUser } );
-      return Orders.find();
+      return Orders.find( {creator : Meteor.userId() } );
+      //return Orders.find();
     }
   });
 

@@ -25,3 +25,4 @@ service-configuration
 accounts-base
 webapp
 momentjs:moment
+kevohagan:sweetalert
