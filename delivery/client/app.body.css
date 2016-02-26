@@ -20,7 +20,9 @@ a {
 	a:hover {
 		text-decoration: none;
 	}
-
+h3 {
+	font-family: Moon B;
+}
 /* Menu */
 #nav {
 	width: 200px;
@@ -65,6 +67,9 @@ a {
 	#d-home, #user-history {
 		top: 50px;
 	}
+	#d-order {
+		top: 75px;
+	}
 	.home-form input {
 		/*display: block;*/
 		margin: 0 auto;
@@ -94,3 +99,26 @@ a {
 .order-item {
 	display: none;
 }
+
+/*************************/
+.order-choice {
+	padding: 30px;
+	width: 250px;
+	text-align: center;
+	margin-bottom: 20px !important;
+	opacity: 0.4;
+}
+	.order-choice h3 {
+		text-align: center;
+		color: white;
+	}
+	#hoot-bg {
+		background-image: url("/hoot-1.jpg");
+		opacity: 1;
+	}
+	#chaus-bg {
+		background-image: url("/chaus-1.jpg");
+	}
+	.order-chaus {
+		display: none;
+	}

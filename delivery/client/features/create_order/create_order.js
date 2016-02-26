@@ -108,7 +108,7 @@ Template.menu_items.events({
 			temp[this.name] = 1;
 		} else { 
 			Session.set("sum", Session.get("sum") - this.price);
-
+			
 			delete temp[this.name];
 		}
 

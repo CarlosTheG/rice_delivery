@@ -1,29 +1,43 @@
 
 
 <template name = "order_form">
-	<div class="template-wrap">
+	<div id="d-order" class="template-wrap">
 		<script src="dist/sweetalert.min.js"></script> 
 		<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-		<h1>Hoot</h1>
 
+		<a href="#" class="order-choice-box hoot-box">
+			<div class="order-choice" id="hoot-bg">
+				<h3>The Hoot</h3>
+			</div>
+		</a>
+
+		<a href="#" class="order-choice-box chaus-box">
+			<div class="order-choice" id="chaus-bg">
+				<h3>Coffeehouse</h3>
+			</div>
+		</a>
+
+		<div class="location-form">
+			<form class="location" >
+				<label for="location">Pickup Location: </label>
+				<input name="location" type="text" id="location" placeholder="ex: Duncan College" required>
+			</form>
+		</div>
 
 	<!-- 	<div id="location">
 			Enter dropoff location:
 			<input type="text" name="text" placeholder="ex: Duncan College" />
 		</div> -->
-		<form class="location" >
-			Pickup Location: <input type="text" id="location" placeholder="ex: Duncan College" required>
-		</form>
-
-		<div id="hoot-order">
-			<p>Select menu item(s)</p>
+		<div class="order-hoot">
+			<div id="hoot-order">
+				<p>Select menu item(s)</p>
+			</div>
+			<div id="hoot-checkboxes">
+				{{#each hoot_menu}}
+					{{> menu_items}}
+				{{/each}}
+			</div>
 		</div>
-		<div id="hoot-checkboxes">
-			{{#each hoot_menu}}
-				{{> menu_items}}
-			{{/each}}
-		</div>
-
 		<!-- TODO: slider range from 1.25 - max 
 		<div id="delivery payment">
 			Please Select a Delivery Price (psst! A higher price will get your order compelted faster!)
@@ -31,32 +45,33 @@
 				{{> delivery}}
 			{{/each}}
 		</div> -->
+		<div class="order-chaus">
+			<p>Select a size.</p>
+			<form class="coffee-size-checkboxes">
+				<input type="radio" name="size" value="small" checked>small  
+				<input type="radio" name="size" value="medium" checked>medium  
+				<input type="radio" name="size" value="large" checked>large
+			</form>
 
-
-		<h1>Coffeehouse</h1>
-		<p>Select a size.</p>
-		<form class="coffee-size-checkboxes">
-			<input type="radio" name="size" value="small" checked>small  
-			<input type="radio" name="size" value="medium" checked>medium  
-			<input type="radio" name="size" value="large" checked>large
-		</form>
-
-		<p>Select flavor(s).</p>
-		<div id="coffee-house-drink">
-			{{#each coffee_house_menu}}
-				{{> coffee_flavors}}
-			{{/each}}
+			<p>Select flavor(s).</p>
+			<div id="coffee-house-drink">
+				{{#each coffee_house_menu}}
+					{{> coffee_flavors}}
+				{{/each}}
+			</div>
 		</div>
 
 		<br>
-
+		
+		<div>
 		<form class = "details">
 			Details: <br>
 			<textarea rows="4" cols="50" id="details"></textarea>
 		</form>
-
+		</div>
 
 		<br>
+		<div>
 		<form class="review_order">
 			Review your order. <br>
 			<ul>
@@ -65,6 +80,7 @@
 				{{/each}}
 			</ul>
 		</form>
+		</div>
 
 	<!-- 	<div class="slider">
 			{{> slider}}
