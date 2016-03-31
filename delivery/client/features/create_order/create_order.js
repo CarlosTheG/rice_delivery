@@ -8,9 +8,9 @@ Session.set("coffee_order", {});
 //var business_list = ["Coffee House", "Hoot"]; //todo: misc
 
 var hoot_menu = [
-	{name: "HBCB", price:2.50, checked:false}, 
-	{name: "Other stuff", price:5, checked:false}, 
-	{name: "expensive stuff", price: 6, checked:false}
+	{name: "HBCB", price: 2.50, checked: false}, 
+	{name: "Other stuff", price: 5, checked: false}, 
+	{name: "expensive stuff", price: 6, checked: false}
 ];
 
 var coffee_size = [
@@ -265,12 +265,14 @@ function uncheck(item_name){
 	for (i=0; i<coffee_menu.length; i++){
 		if (coffee_menu[i].name == item_name){
 			coffee_menu[i].checked = false;
+			$('input[name="'+item_name+'"]').attr('checked', false);
 			return
 		}
 	}
 	for (i=0; i<hoot_menu.length; i++){
 		if (hoot_menu[i].name == item_name){
 			hoot_menu[i].checked = false;
+			$('input[name="'+item_name+'"]').attr('checked', false);
 			return
 		}
 	}
