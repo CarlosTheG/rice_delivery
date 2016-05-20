@@ -104,10 +104,11 @@ Template.menu_items.events({
 		var temp = Session.get("hoot_order");
 		if (this.checked == true) { 
 			Session.set("sum", Session.get("sum") + this.price);
-
+			this.count = 1; // starts count of number of this item
 			temp[this.name] = 1;
 		} else { 
-			Session.set("sum", Session.get("sum") - this.price);
+			// when deselecting a food item, subtract the price * quantity
+			Session.set("sum", Session.get("sum") - this.price * this.count);
 			
 			delete temp[this.name];
 		}
@@ -159,6 +160,7 @@ Template.order_review.events({
 		}
 
 		if (flag){
+			object.count += 1;  // increment count for this item
 			Session.set("sum", Session.get("sum") + object.price);
 
 			var temp = Session.get("hoot_order");
@@ -192,6 +194,7 @@ Template.order_review.events({
 		}
 
 		if (flag){
+			object.count -= 1; // decerement count for this item
 			Session.set("sum", Session.get("sum") - object.price);
 
 			var temp = Session.get("hoot_order");
