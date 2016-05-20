@@ -1,6 +1,6 @@
 var order_sum = Session.set("sum", 1.50);
 var size = Session.set("size", "large"); //needs to be fixed. start up has bugs
-var coffee_sum = Session.set("coffee_sum", 0); 
+var coffee_sum = Session.set("coffee_sum", 0.0); 
 Session.set("total_order", {});
 Session.set("hoot_order", {});
 Session.set("coffee_order", {});
@@ -9,8 +9,8 @@ Session.set("coffee_order", {});
 
 var hoot_menu = [
 	{name: "HBCB", price: 2.50, checked: false}, 
-	{name: "Other stuff", price: 5, checked: false}, 
-	{name: "expensive stuff", price: 6, checked: false}
+	{name: "Other stuff", price: 5.0, checked: false}, 
+	{name: "expensive stuff", price: 6.0, checked: false}
 ];
 
 var coffee_size = [
@@ -95,7 +95,27 @@ Template.order_form.events({
 
     'click .coffee-size-checkboxes': function(){
 		Session.set("size", $('input[name="size"]:checked').val());
-	}
+	},
+	// reset current order 
+	'click .reset-order': function(event){
+		Session.set("sum", 1.50);
+		Session.set("coffee_sum", 0.0);
+		Session.set("total_order", {});
+		Session.set("hoot_order", {});
+		Session.set("coffee_order", {});
+		for (var i=0; i<hoot_menu.length; i++){
+			hoot_menu[i].checked = false;
+			hoot_menu[i].count = 0;
+			$('input[name="'+hoot_menu[i].name+'"]').attr('checked', false);
+		}
+		
+		for (var i=0; i<coffee_menu.length; i++){
+			coffee_menu[i].checked = false;
+			coffee_menu[i].count = 0;
+			$('input[name="'+coffee_menu[i].name+'"]').attr('checked', false);
+
+		}
+	},
 });
 
 Template.menu_items.events({
@@ -227,7 +247,7 @@ Template.order_review.events({
 
 function computeCoffeePrice(coffee_array){
 	var size = Session.get("size");
-	var coffee_sum = 0;
+	var coffee_sum = 0.0;
 
 	for (key in coffee_array) {
 		coffee_sum += coffee_prices[key][size] * coffee_array[key];
