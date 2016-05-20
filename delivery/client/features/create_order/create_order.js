@@ -77,20 +77,25 @@ Template.order_form.events({
 
       	//window.alert(Meteor.userId());
       	var cost = Session.get("sum") + Session.get("coffee_sum");
+      	if (cost > 1.5) {
+	      	//insert new order into Orders
+		  	Orders.insert({
+				price: cost,
+		        createdAt: new Date(), // current time
+		        status: "Active",
+		        items_ordered: getItemList(),
+		        location: document.getElementById("location").value,
+		        details: document.getElementById("details").value,
+		        creator: Meteor.userId()
+			});
 
-      	//insert new order into Orders
-	  	Orders.insert({
-			price: cost,
-	        createdAt: new Date(), // current time
-	        status: "Active",
-	        items_ordered: getItemList(),
-	        location: document.getElementById("location").value,
-	        details: document.getElementById("details").value,
-	        creator: Meteor.userId()
-		});
-
-	  	sweetAlert("Your order has been placed!", "Have fun eating your food.", "success");
-		Router.go("/");
+		  	sweetAlert("Your order has been placed!", "Have fun eating your food.", "success");
+			Router.go("/");
+      	}
+      	
+      	else {
+      		confirm("Go order some food!");
+      	}
     },
 
     'click .coffee-size-checkboxes': function(){

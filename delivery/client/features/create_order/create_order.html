@@ -19,7 +19,7 @@
 
 		<div class="location-form">
 			<form class="location" >
-				<label for="location">Pickup Location: </label>
+				<label for="location">Pickup Location</label>
 				<input name="location" type="text" id="location" placeholder="ex: Duncan College" required>
 			</form>
 		</div>
@@ -46,14 +46,14 @@
 			{{/each}}
 		</div> -->
 		<div class="order-chaus">
-			<p>Select a size.</p>
+			<p>Select a size</p>
 			<form class="coffee-size-checkboxes">
 				<input type="radio" name="size" value="small" checked>small  
 				<input type="radio" name="size" value="medium" checked>medium  
 				<input type="radio" name="size" value="large" checked>large
 			</form>
 
-			<p>Select flavor(s).</p>
+			<p>Select flavor(s)</p>
 			<div id="coffee-house-drink">
 				{{#each coffee_house_menu}}
 					{{> coffee_flavors}}
@@ -73,9 +73,9 @@
 		<br>
 		<div>
 		<form class="review_order">
-			Review your order. <br>
+			Review your order<br>
 			<ul>
-				{{#each full_order}}
+				{{#each full_order}} 
 					{{> order_review}}
 				{{/each}}
 			</ul>
