@@ -13,9 +13,10 @@ client:
 		- user_profile - edit venmo, profile info
 
 collections:
-	- Mongo collections (active tasks (public), user tasks (private))
+	- Mongo collections (active tasks (public),  user tasks (private))
 
 public: image Assets, etc.
 
 server:
 	- 
+
