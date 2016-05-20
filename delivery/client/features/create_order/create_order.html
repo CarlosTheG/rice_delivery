@@ -46,7 +46,7 @@
 			{{/each}}
 		</div> -->
 		<div class="order-chaus">
-			<p>Select a size</p>
+			<p>Select size</p>
 			<form class="coffee-size-checkboxes">
 				<input type="radio" name="size" value="small" checked>small  
 				<input type="radio" name="size" value="medium" checked>medium  
@@ -65,8 +65,8 @@
 		
 		<div>
 		<form class = "details">
-			Details: <br>
-			<textarea rows="4" cols="50" id="details"></textarea>
+			Details<br>
+			<textarea rows="4" cols="50" id="details" placeholder="Specify food types here. ex: pepperoni pizza, tofu bahn mi, sugarfree redbull, red pepper hummus, etc."></textarea>
 		</form>
 		</div>
 
@@ -108,7 +108,7 @@
 
 <template name = "menu_items">
 	<input name="{{name}}" type="checkbox" checked="{{checked}}" class="toggle_check">
-	<span class="text">${{price}} -- {{name}} </span>
+	<span class="text">${{price}} - {{name}} </span>
 </template>	
 
 <template name="coffee_flavors">

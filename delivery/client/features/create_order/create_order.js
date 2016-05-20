@@ -1,16 +1,20 @@
 var order_sum = Session.set("sum", 1.50);
 var size = Session.set("size", "large"); //needs to be fixed. start up has bugs
-var coffee_sum = Session.set("coffee_sum", 0.0); 
+var coffee_sum = Session.set("coffee_sum", 0.00); 
 Session.set("total_order", {});
 Session.set("hoot_order", {});
 Session.set("coffee_order", {});
 
 //var business_list = ["Coffee House", "Hoot"]; //todo: misc
 
+// whenever an item costs X.50, use the .toFixed(2) method so that it displays properly to 2 decimals!
 var hoot_menu = [
-	{name: "HBCB", price: 2.50, checked: false}, 
-	{name: "Other stuff", price: 5.0, checked: false}, 
-	{name: "expensive stuff", price: 6.0, checked: false}
+	{name: "HBCB", price: 2.50.toFixed(2), checked: false}, 
+	{name: "Half Pizza", price: 5.00, checked: false},
+	{name: "Whole Pizza", price: 9.00, checked: false},
+	{name: "CFA Nuggets", price: 4.00, checked: false},
+	{name: "CFA Regular Sandwich", price: 4.00, checked: false},
+	{name: "CFA Spicy Sandwich", price: 4.50.toFixed(2), checked: false}
 ];
 
 var coffee_size = [
@@ -26,19 +30,19 @@ var coffee_menu = [
 
 var coffee_prices = {
 	frap : {
-		"small": 2.0,
-		"medium": 3.0,
-		"large": 4.0
+		"small": 2.00,
+		"medium": 3.00,
+		"large": 4.00
 	},
 	crap : {
 		"small": 0.25,  // ayyyyy dem profits
-		"medium": 0.4,
+		"medium": 0.40,
 		"large": 50
 	},
 	keurig : {
-		"small": 0.5,
-		"medium": 0.6,
-		"large": 2
+		"small": 0.50,
+		"medium": 0.60,
+		"large": 20
 	}
 };
 
@@ -58,7 +62,7 @@ Template.order_form.helpers({
 		computeCoffeePrice(Session.get("coffee_order"));
 		var coffee_sum = Session.get("coffee_sum");
 
-		return hoot_sum + coffee_sum;
+		return (hoot_sum + coffee_sum).toFixed(2);
 	},
 
 	full_order: function(){
@@ -77,7 +81,7 @@ Template.order_form.events({
 
       	//window.alert(Meteor.userId());
       	var cost = Session.get("sum") + Session.get("coffee_sum");
-      	if (cost > 1.5) {
+      	if (cost > 1.50) {
 	      	//insert new order into Orders
 		  	Orders.insert({
 				price: cost,
@@ -104,7 +108,7 @@ Template.order_form.events({
 	// reset current order 
 	'click .reset-order': function(event){
 		Session.set("sum", 1.50);
-		Session.set("coffee_sum", 0.0);
+		Session.set("coffee_sum", 0.00);
 		Session.set("total_order", {});
 		Session.set("hoot_order", {});
 		Session.set("coffee_order", {});
@@ -252,7 +256,7 @@ Template.order_review.events({
 
 function computeCoffeePrice(coffee_array){
 	var size = Session.get("size");
-	var coffee_sum = 0.0;
+	var coffee_sum = 0.00;
 
 	for (key in coffee_array) {
 		coffee_sum += coffee_prices[key][size] * coffee_array[key];
